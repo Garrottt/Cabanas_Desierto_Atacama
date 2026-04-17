@@ -25,11 +25,20 @@
 }
 
 @layer base {
+  html {
+    scroll-padding-top: 6rem;
+  }
+
   body {
     @apply bg-stone-50 text-stone-900;
+    overflow-x: hidden;
   }
   
   h1, h2, h3, h4, h5, h6 {
     @apply font-serif;
+  }
+
+  section[id] {
+    scroll-margin-top: 6rem;
   }
 }
