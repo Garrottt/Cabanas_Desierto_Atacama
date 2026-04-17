@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
@@ -86,7 +87,60 @@ const reviews = [
   },
 ];
 
+const mobileLoopReviews = [...reviews, ...reviews, ...reviews];
+
 export default function Reviews() {
+  const mobileTrackRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const track = mobileTrackRef.current;
+    if (!track) {
+      return;
+    }
+
+    let frameId = 0;
+    let isAdjusting = false;
+
+    const getSegmentWidth = () => track.scrollWidth / 3;
+
+    const centerTrack = () => {
+      track.scrollLeft = getSegmentWidth();
+    };
+
+    const handleScroll = () => {
+      if (isAdjusting) {
+        return;
+      }
+
+      const segmentWidth = getSegmentWidth();
+      const minThreshold = segmentWidth * 0.5;
+      const maxThreshold = segmentWidth * 1.5;
+
+      if (track.scrollLeft < minThreshold || track.scrollLeft > maxThreshold) {
+        isAdjusting = true;
+        frameId = window.requestAnimationFrame(() => {
+          if (track.scrollLeft < minThreshold) {
+            track.scrollLeft += segmentWidth;
+          } else {
+            track.scrollLeft -= segmentWidth;
+          }
+
+          isAdjusting = false;
+        });
+      }
+    };
+
+    centerTrack();
+    track.addEventListener("scroll", handleScroll, { passive: true });
+    window.addEventListener("resize", centerTrack);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      track.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("resize", centerTrack);
+    };
+  }, []);
+
   return (
     <section className="overflow-hidden border-t border-stone-200/50 bg-stone-50 py-20 sm:py-24">
       <div className="mx-auto mb-12 max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -118,10 +172,6 @@ export default function Reviews() {
               </span>
             </h3>
           </div>
-
-          <div className="hidden items-center gap-2 text-sm text-stone-500 md:flex">
-            Desliza con calma o deja que avancen solas.
-          </div>
         </motion.div>
       </div>
 
@@ -129,10 +179,14 @@ export default function Reviews() {
         <div className="mb-4 text-sm text-stone-500">
           En celular puedes deslizar las reseñas a tu ritmo.
         </div>
-        <div className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
-          {reviews.map((review) => (
+        <div
+          ref={mobileTrackRef}
+          className="flex snap-x snap-mandatory gap-4 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
+          {mobileLoopReviews.map((review, index) => (
             <article
-              key={review.id}
+              key={`${review.id}-${index}`}
+              aria-hidden={index < reviews.length || index >= reviews.length * 2}
               className="flex min-h-[260px] w-[88vw] max-w-sm shrink-0 snap-start flex-col justify-between rounded-3xl border border-stone-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
             >
               <div>

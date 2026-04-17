@@ -3,51 +3,17 @@
 import Image from "next/image";
 import { Wifi, Coffee, Wind, Sun, ArrowUpRight } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import { cabinShowcase } from "@/lib/site-content";
 
-const cabins = [
-  {
-    id: 1,
-    name: "Cabaña Amanecer",
-    description:
-      "Ideal para parejas. Vista panorámica al este para disfrutar de los amaneceres del desierto.",
-    features: [
-      <Wifi key="WIFI" size={18} />,
-      <Coffee key="COFFEE" size={18} />,
-      <Wind key="WIND" size={18} />,
-    ],
-    capacity: "2 Personas",
-    image:
-      "https://images.unsplash.com/photo-1587061949409-02df41d5e562?q=80&w=2938&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    name: "Cabaña Tierra",
-    description:
-      "Amplitud y comodidad para la familia, con terraza privada y parrilla al aire libre.",
-    features: [
-      <Wifi key="WIFI" size={18} />,
-      <Wind key="WIND" size={18} />,
-      <Sun key="SUN" size={18} />,
-    ],
-    capacity: "4 Personas",
-    image:
-      "https://images.unsplash.com/photo-1542718610-a1d656d1884c?q=80&w=2938&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    name: "Cabaña Estrella",
-    description:
-      "Ventanal en el techo para observar el universo desde tu cama. Experiencia inmersiva.",
-    features: [
-      <Wifi key="WIFI" size={18} />,
-      <Coffee key="COFFEE" size={18} />,
-      <Sun key="SUN" size={18} />,
-    ],
-    capacity: "2 Personas",
-    image:
-      "https://images.unsplash.com/photo-1510798831971-661eb04b3739?q=80&w=2787&auto=format&fit=crop",
-  },
-];
+const cabins = cabinShowcase.map((cabin) => ({
+  ...cabin,
+  features:
+    cabin.id === 1
+      ? [<Wifi key="WIFI" size={18} />, <Coffee key="COFFEE" size={18} />, <Wind key="WIND" size={18} />]
+      : cabin.id === 2
+        ? [<Wifi key="WIFI" size={18} />, <Wind key="WIND" size={18} />, <Sun key="SUN" size={18} />]
+        : [<Wifi key="WIFI" size={18} />, <Coffee key="COFFEE" size={18} />, <Sun key="SUN" size={18} />],
+}));
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },

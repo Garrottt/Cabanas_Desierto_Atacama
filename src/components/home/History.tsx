@@ -1,9 +1,21 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { cabinShowcase } from "@/lib/site-content";
 
 export default function History() {
+  const [activeIndex, setActiveIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveIndex((current) => (current + 1) % cabinShowcase.length);
+    }, 4200);
+
+    return () => window.clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="experiencia"
@@ -56,16 +68,76 @@ export default function History() {
 
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="relative mt-12 hidden h-64 overflow-hidden rounded-3xl border border-white/5 shadow-2xl lg:block"
+              className="relative mt-12 hidden overflow-hidden rounded-3xl border border-white/10 bg-white/[0.04] shadow-2xl lg:block"
             >
-              <div className="absolute inset-0 z-10 bg-brand-900/20 mix-blend-overlay transition-opacity hover:opacity-0" />
-              <Image
-                src="https://images.unsplash.com/photo-1518182170546-0766de6b6aad?q=80&w=3000&auto=format&fit=crop"
-                alt="Detalle del desierto"
-                fill
-                sizes="(max-width: 1024px) 0vw, 50vw"
-                className="object-cover transition-transform duration-1000 hover:scale-110"
-              />
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(180,112,70,0.22),_transparent_48%),radial-gradient(circle_at_bottom_right,_rgba(17,76,78,0.18),_transparent_42%)]" />
+              <div className="relative min-h-72">
+                {cabinShowcase.map((cabin, index) => (
+                  <motion.div
+                    key={cabin.id}
+                    initial={false}
+                    animate={{
+                      opacity: index === activeIndex ? 1 : 0,
+                      scale: index === activeIndex ? 1 : 1.04,
+                    }}
+                    transition={{ duration: 0.8, ease: "easeOut" }}
+                    className="absolute inset-0"
+                    aria-hidden={index !== activeIndex}
+                  >
+                    <Image
+                      src={cabin.image}
+                      alt={cabin.name}
+                      fill
+                      sizes="(max-width: 1024px) 0vw, 50vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-desert-950 via-desert-950/55 to-transparent" />
+                  </motion.div>
+                ))}
+
+                <div className="relative z-10 flex min-h-72 flex-col justify-between px-8 py-8">
+                  <div>
+                    <p className="mb-4 text-xs font-semibold uppercase tracking-[0.35em] text-brand-300/80">
+                      Espacios para desconectar
+                    </p>
+                    <div className="max-w-lg">
+                      <p className="text-2xl leading-tight text-white">
+                        {cabinShowcase[activeIndex].name}
+                      </p>
+                      <p className="mt-3 max-w-md text-sm leading-relaxed text-stone-200/85">
+                        {cabinShowcase[activeIndex].description}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-end justify-between gap-6">
+                    <div className="rounded-2xl border border-white/10 bg-black/20 px-4 py-3 backdrop-blur-sm">
+                      <p className="text-xs uppercase tracking-[0.28em] text-stone-400">
+                        Capacidad
+                      </p>
+                      <p className="mt-2 text-lg text-white">
+                        {cabinShowcase[activeIndex].capacity}
+                      </p>
+                    </div>
+
+                    <div className="flex gap-2">
+                      {cabinShowcase.map((cabin, index) => (
+                        <button
+                          key={cabin.id}
+                          type="button"
+                          onClick={() => setActiveIndex(index)}
+                          className={`h-2.5 rounded-full transition-all ${
+                            index === activeIndex
+                              ? "w-10 bg-brand-300"
+                              : "w-2.5 bg-white/35 hover:bg-white/60"
+                          }`}
+                          aria-label={`Ver ${cabin.name}`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </div>
             </motion.div>
           </motion.div>
 
