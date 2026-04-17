@@ -187,7 +187,7 @@ export default function Reviews() {
             <article
               key={`${review.id}-${index}`}
               aria-hidden={index < reviews.length || index >= reviews.length * 2}
-              className="flex min-h-[260px] w-[88vw] max-w-sm shrink-0 snap-start flex-col justify-between rounded-3xl border border-stone-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+              className="flex min-h-65 w-[88vw] max-w-sm shrink-0 snap-start flex-col justify-between rounded-3xl border border-stone-100 bg-white p-6 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
             >
               <div>
                 <div className="mb-5 flex gap-1">
@@ -217,8 +217,8 @@ export default function Reviews() {
       </div>
 
       <div className="group relative mx-auto hidden max-w-[100vw] pb-8 md:block">
-        <div className="absolute top-0 left-0 bottom-0 z-10 w-8 bg-gradient-to-r from-stone-50 to-transparent md:w-32" />
-        <div className="absolute top-0 right-0 bottom-0 z-10 w-8 bg-gradient-to-l from-stone-50 to-transparent md:w-32" />
+        <div className="bg-linear-to-r absolute top-0 left-0 bottom-0 z-10 w-8 from-stone-50 to-transparent md:w-32" />
+        <div className="bg-linear-to-l absolute top-0 right-0 bottom-0 z-10 w-8 from-stone-50 to-transparent md:w-32" />
 
         <div className="flex overflow-hidden">
           <motion.div
@@ -230,7 +230,7 @@ export default function Reviews() {
               <article
                 key={`${review.id}-${idx}`}
                 aria-hidden={idx >= reviews.length}
-                className="flex w-[340px] shrink-0 flex-col justify-between rounded-3xl border border-stone-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-transform duration-300 group-hover:[animation-play-state:paused] hover:scale-[1.02] lg:w-[380px]"
+                className="flex w-85 shrink-0 flex-col justify-between rounded-3xl border border-stone-100 bg-white p-8 shadow-[0_8px_30px_rgb(0,0,0,0.04)] transition-transform duration-300 group-hover:[animation-play-state:paused] hover:scale-[1.02] lg:w-95"
               >
                 <div>
                   <div className="mb-6 flex gap-1">

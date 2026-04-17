@@ -49,7 +49,7 @@ export async function submitReservation(formData: FormData) {
           html: `
             <div style="font-family: sans-serif; max-w: 600px; margin: 0 auto;">
               <h2 style="color: #c28854;">Nueva Solicitud de Reserva Registrada</h2>
-              <p>Hola, tienes una nueva solicitud desde la página web (guardada en Supabase).</p>
+              <p>Hola, tienes una nueva solicitud desde la página web, no olvides confirmar la disponibilidad.</p>
               <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tr style="background:#f4ece1;"><td style="padding:10px; border:1px solid #ead9c3;"><strong>Cabaña</strong></td><td style="padding:10px; border:1px solid #ead9c3;">${cabinData?.name}</td></tr>
                 <tr><td style="padding:10px; border:1px solid #ead9c3;"><strong>Cliente</strong></td><td style="padding:10px; border:1px solid #ead9c3;">${name}</td></tr>

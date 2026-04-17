@@ -37,10 +37,10 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
       id="reservas"
       className="relative overflow-hidden bg-desert-950 py-20 text-stone-100 sm:py-24 lg:py-32 xl:py-40"
     >
-      <div className="pointer-events-none absolute top-0 right-0 h-[500px] w-[500px] -translate-y-1/2 translate-x-1/3 rounded-full bg-brand-800/10 blur-[100px]" />
-      <div className="pointer-events-none absolute bottom-0 left-0 h-[600px] w-[600px] translate-y-1/3 -translate-x-1/3 rounded-full bg-accent-900/15 blur-[120px]" />
+      <div className="pointer-events-none absolute top-0 right-0 size-[500px] -translate-y-1/2 translate-x-1/3 rounded-full bg-brand-800/10 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-0 left-0 size-[600px] translate-y-1/3 -translate-x-1/3 rounded-full bg-accent-900/15 blur-[120px]" />
 
-      <div className="relative z-10 mx-auto max-w-[85rem] px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 mx-auto max-w-340 px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center gap-12 lg:flex-row lg:gap-20 xl:gap-24">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
@@ -50,7 +50,7 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
             className="lg:w-5/12"
           >
             <div className="mb-6 flex items-center gap-4">
-              <span className="h-[1px] w-12 bg-brand-400" />
+              <span className="h-px w-12 bg-brand-400" />
               <h2 className="text-xs font-bold uppercase tracking-[0.3em] text-brand-300">
                 Empieza el Viaje
               </h2>
@@ -69,8 +69,8 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
               personalizada a través de WhatsApp.
             </p>
 
-            <div className="relative overflow-hidden rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 shadow-2xl backdrop-blur-2xl">
-              <div className="absolute top-0 left-0 h-1 w-full bg-gradient-to-r from-brand-600 to-accent-600" />
+            <div className="relative overflow-hidden rounded-4xl border border-white/10 bg-white/3 p-8 shadow-2xl backdrop-blur-2xl">
+              <div className="bg-linear-to-r absolute top-0 left-0 h-1 w-full from-brand-600 to-accent-600" />
               <h4 className="mb-6 text-2xl tracking-wide text-white">
                 Beneficios Exclusivos
               </h4>
@@ -105,11 +105,11 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
             className="w-full lg:w-7/12"
           >
             <div className="relative">
-              <div className="pointer-events-none absolute -inset-2 rounded-[2.5rem] bg-gradient-to-tr from-brand-800/20 to-accent-800/10 blur-xl opacity-50" />
+              <div className="pointer-events-none absolute -inset-2 rounded-[2.5rem] bg-linear-to-tr from-brand-800/20 to-accent-800/10 blur-xl opacity-50" />
 
               <form
                 onSubmit={handleSubmit}
-                className="relative flex flex-col space-y-7 rounded-[1.75rem] border border-white/10 bg-white/[0.02] p-5 shadow-2xl backdrop-blur-3xl sm:rounded-[2rem] sm:p-8 lg:space-y-8 lg:p-10 xl:p-12"
+                className="relative flex flex-col space-y-7 rounded-[1.75rem] border border-white/10 bg-white/2 p-5 shadow-2xl backdrop-blur-3xl sm:rounded-4xl sm:p-8 lg:space-y-8 lg:p-10 xl:p-12"
               >
                 {error && (
                   <motion.div
@@ -152,7 +152,7 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
                       name="checkIn"
                       required
                       min={getTodayString()}
-                      className="w-full rounded-xl border border-white/20 bg-desert-950/50 px-4 py-4 font-light text-white transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500 [color-scheme:dark] sm:px-5"
+                      className="w-full rounded-xl border border-white/20 bg-desert-950/50 px-4 py-4 font-light text-white transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500 scheme-dark sm:px-5"
                     />
                   </div>
                   <div>
@@ -164,7 +164,7 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
                       name="checkOut"
                       required
                       min={getTodayString()}
-                      className="w-full rounded-xl border border-white/20 bg-desert-950/50 px-4 py-4 font-light text-white transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500 [color-scheme:dark] sm:px-5"
+                      className="w-full rounded-xl border border-white/20 bg-desert-950/50 px-4 py-4 font-light text-white transition focus:border-brand-500 focus:ring-1 focus:ring-brand-500 scheme-dark sm:px-5"
                     />
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default function ReservationSection({ cabins }: { cabins: CabinOption[] }
                 <button
                   type="submit"
                   disabled={loading}
-                  className="group relative mt-4 w-full overflow-hidden rounded-xl bg-gradient-to-r from-brand-600 to-accent-600 p-px font-bold text-white shadow-2xl transition-all disabled:cursor-wait disabled:opacity-70"
+                  className="bg-linear-to-r group relative mt-4 w-full overflow-hidden rounded-xl from-brand-600 to-accent-600 p-px font-bold text-white shadow-2xl transition-all disabled:cursor-wait disabled:opacity-70"
                 >
                   <div className="relative flex items-center justify-center rounded-xl border border-white/5 bg-desert-950/40 px-8 py-5 transition-all group-hover:bg-transparent">
                     <span className="font-sans tracking-wide">
