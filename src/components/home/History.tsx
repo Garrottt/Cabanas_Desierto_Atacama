@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import LocalFirstImage from "@/components/shared/LocalFirstImage";
 import { cabinShowcase } from "@/lib/site-content";
 
 export default function History() {
@@ -84,8 +84,9 @@ export default function History() {
                     className="absolute inset-0"
                     aria-hidden={index !== activeIndex}
                   >
-                    <Image
-                      src={cabin.image}
+                    <LocalFirstImage
+                      localSrc={cabin.localImage}
+                      fallbackSrc={cabin.fallbackImage}
                       alt={cabin.name}
                       fill
                       sizes="(max-width: 1024px) 0vw, 50vw"
@@ -153,8 +154,9 @@ export default function History() {
             <div className="group relative overflow-hidden rounded-[2.5rem] border border-white/10 shadow-2xl">
               <div className="absolute inset-0 z-10 bg-gradient-to-t from-desert-950 to-transparent opacity-60" />
               <div className="relative h-[380px] sm:h-[500px] lg:h-[680px] xl:h-[750px]">
-                <Image
-                  src="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2621&auto=format&fit=crop"
+                <LocalFirstImage
+                  localSrc="/images/historia/historia-principal.webp"
+                  fallbackSrc="https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?q=80&w=2621&auto=format&fit=crop"
                   alt="Nuestra historia"
                   fill
                   sizes="(max-width: 1024px) 100vw, 50vw"

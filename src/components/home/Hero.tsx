@@ -1,40 +1,93 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 import { Compass, Star, MapPin } from "lucide-react";
+import LocalFirstImage from "@/components/shared/LocalFirstImage";
+import { heroMedia } from "@/lib/site-content";
 
 export default function Hero() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [isVideoVisible, setIsVideoVisible] = useState(false);
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "40%"]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.2]);
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) {
+      return;
+    }
+
+    video.load();
+
+    const tryPlay = async () => {
+      try {
+        await video.play();
+      } catch {
+        // Some browsers may delay autoplay; we keep the poster fallback visible.
+      }
+    };
+
+    void tryPlay();
+  }, []);
 
   return (
     <section
-      ref={ref}
       id="inicio"
       className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-desert-950"
     >
-      <motion.div style={{ y }} className="absolute -top-[10%] inset-x-0 h-[120%] w-full">
-        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542315904-7a0e30a5db22?q=80&w=2938&auto=format&fit=crop')] bg-cover bg-center opacity-80" />
-        <div className="absolute inset-0 bg-gradient-to-t from-desert-950 via-desert-950/40 to-transparent" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-desert-950/20 to-desert-950/80" />
-      </motion.div>
+      <div className="absolute inset-0 h-full w-full">
+        <div
+          className={`absolute inset-0 transition-opacity duration-700 ${
+            isVideoVisible ? "opacity-0" : "opacity-100"
+          }`}
+        >
+          <LocalFirstImage
+            localSrc={heroMedia.localPoster}
+            fallbackSrc={heroMedia.fallbackPoster}
+            alt="Vista principal de Cabañas del Desierto"
+            fill
+            priority
+            sizes="100vw"
+            className="scale-105 object-cover opacity-28 blur-[10px] saturate-75"
+          />
+          <div className="absolute inset-0 bg-desert-950/55" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,_rgba(205,162,118,0.14),_transparent_34%),linear-gradient(to_bottom,rgba(10,9,8,0.32),rgba(10,9,8,0.72))]" />
+        </div>
+
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          loop
+          playsInline
+          preload="auto"
+          disablePictureInPicture
+          onLoadedData={() => setIsVideoVisible(true)}
+          onCanPlay={() => {
+            setIsVideoVisible(true);
+            void videoRef.current?.play();
+          }}
+          onPlaying={() => setIsVideoVisible(true)}
+          className={`absolute inset-0 h-full w-full object-cover transition-opacity duration-700 ${
+            isVideoVisible ? "opacity-62" : "opacity-0"
+          }`}
+        >
+          <source src={heroMedia.video} type="video/mp4" />
+        </video>
+
+        <div className="absolute inset-0 bg-desert-950/28" />
+        <div className="absolute inset-0 bg-gradient-to-t from-desert-950 via-desert-950/62 to-desert-950/18" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-transparent via-desert-950/32 to-desert-950/88" />
+        <div className="absolute inset-x-0 top-0 h-[38%] bg-gradient-to-b from-desert-950/48 to-transparent" />
+      </div>
 
       <motion.div
-        style={{ opacity }}
         className="relative z-10 mx-auto flex w-full max-w-7xl flex-col items-center px-4 pt-28 pb-16 sm:px-6 sm:pt-32 sm:pb-20 lg:px-8 lg:pt-36"
       >
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-          className="mb-6 flex flex-wrap items-center justify-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2.5 text-center shadow-[0_0_30px_rgba(0,0,0,0.2)] backdrop-blur-xl sm:mb-8 sm:px-5"
+          className="mb-6 flex flex-wrap items-center justify-center gap-2 rounded-full border border-white/12 bg-black/18 px-4 py-2.5 text-center shadow-[0_12px_50px_rgba(0,0,0,0.28)] backdrop-blur-xl sm:mb-8 sm:px-5"
         >
           <MapPin size={16} className="text-brand-300" />
           <span className="text-sm font-light uppercase tracking-widest text-white/90">
@@ -49,11 +102,11 @@ export default function Hero() {
           initial={{ opacity: 0, filter: "blur(10px)", scale: 0.95 }}
           animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
           transition={{ duration: 1.5, delay: 0.4, ease: "easeOut" }}
-          className="text-center"
+          className="max-w-5xl text-center"
         >
-          <h1 className="mb-5 text-4xl leading-[1.05] tracking-tighter text-white drop-shadow-2xl sm:text-6xl md:mb-6 md:text-8xl lg:text-9xl">
+          <h1 className="mb-5 text-4xl leading-[1.05] tracking-tighter text-white drop-shadow-[0_14px_40px_rgba(0,0,0,0.5)] sm:text-6xl md:mb-6 md:text-8xl lg:text-9xl">
             Respira el <br />
-            <span className="bg-gradient-to-r from-brand-200 via-brand-300 to-accent-300 bg-clip-text pr-2 font-light italic text-transparent">
+            <span className="pr-2 font-light italic text-brand-200">
               silencio absoluto.
             </span>
           </h1>
@@ -63,7 +116,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1.2, delay: 0.9 }}
-          className="mb-10 max-w-2xl text-center text-base font-light leading-relaxed text-stone-300 drop-shadow-lg sm:text-lg md:mb-14 md:text-2xl"
+          className="mb-10 max-w-3xl rounded-[2rem] bg-black/16 px-5 py-3 text-center text-base leading-relaxed text-stone-100 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-[6px] sm:px-6 sm:text-lg md:mb-14 md:text-2xl"
         >
           Un refugio de lujo integrado en el desierto más árido del mundo. Conecta con
           el origen.

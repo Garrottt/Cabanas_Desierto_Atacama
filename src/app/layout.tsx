@@ -24,6 +24,14 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="es" className={`${inter.variable} ${playfair.variable} scroll-smooth`}>
+      <head>
+        <link
+          rel="preload"
+          as="video"
+          href="/videos/hero-desierto.mp4"
+          type="video/mp4"
+        />
+      </head>
       <body className="antialiased min-h-screen bg-stone-50 text-stone-900 font-sans">
         {children}
       </body>

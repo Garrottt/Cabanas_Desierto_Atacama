@@ -1,8 +1,8 @@
 "use client";
 
-import Image from "next/image";
 import { Wifi, Coffee, Wind, Sun, ArrowUpRight } from "lucide-react";
 import { motion, Variants } from "framer-motion";
+import LocalFirstImage from "@/components/shared/LocalFirstImage";
 import { cabinShowcase } from "@/lib/site-content";
 
 const cabins = cabinShowcase.map((cabin) => ({
@@ -79,8 +79,9 @@ export default function Gallery() {
               className="group flex flex-col overflow-hidden rounded-[2rem] border border-stone-100/50 bg-white shadow-sm transition-all duration-700 hover:-translate-y-2 hover:shadow-[0_20px_60px_rgba(0,0,0,0.06)] sm:rounded-[2.5rem]"
             >
               <div className="relative m-3 h-72 overflow-hidden rounded-[1.6rem] bg-stone-100 sm:h-80 sm:rounded-[2rem] lg:h-96">
-                <Image
-                  src={cabin.image}
+                <LocalFirstImage
+                  localSrc={cabin.localImage}
+                  fallbackSrc={cabin.fallbackImage}
                   alt={cabin.name}
                   fill
                   sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
