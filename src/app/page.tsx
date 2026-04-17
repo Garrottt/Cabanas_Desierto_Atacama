@@ -4,6 +4,7 @@ import Hero from "@/components/home/Hero";
 import History from "@/components/home/History";
 import Gallery from "@/components/home/Gallery";
 import ReservationSection from "@/components/home/ReservationSection";
+import Reviews from "@/components/home/Reviews";
 import { supabase } from "@/lib/supabase";
 
 // Next.js Server Component
@@ -19,6 +20,8 @@ export default async function Home() {
       <Gallery />
       
       <ReservationSection cabins={cabins || []} />
+      
+      <Reviews />
 
       <Footer />
     </main>

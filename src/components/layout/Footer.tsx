@@ -5,7 +5,7 @@ export default function Footer() {
         <div>
           <h3 className="font-serif text-2xl text-stone-50 mb-4">Cabañas del Desierto</h3>
           <p className="text-sm">
-            Un oasis de tranquilidad y belleza natural. Desconéctate de la ciudad y reconecta contigo en el desierto.
+            Un oasis de tranquilidad y belleza natural. Desconéctate de la ciudad y reconecta contigo.
           </p>
         </div>
         <div>
@@ -20,9 +20,9 @@ export default function Footer() {
         <div>
           <h4 className="text-stone-50 font-medium mb-4">Contacto</h4>
           <ul className="space-y-2 text-sm">
-            <li>📍 San Pedro de Atacama, Chile</li>
+            <li>📍 Huasco, Atacama, Chile</li>
             <li>📧 contacto@cabanasdeldesierto.cl</li>
-            <li>📞 +56 9 1234 5678</li>
+            <li>📞 +569 12345678</li>
           </ul>
         </div>
       </div>
