@@ -12,6 +12,14 @@
   --color-brand-800: #7b4835;
   --color-brand-900: #633c2e;
 
+  --color-accent-400: #2a8a8e;
+  --color-accent-500: #1b6d70;
+  --color-accent-600: #114c4e;
+  --color-accent-900: #082d2e;
+  
+  --color-desert-900: #12100e;
+  --color-desert-950: #0a0908;
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, serif;
 }
