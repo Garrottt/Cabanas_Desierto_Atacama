@@ -1,36 +1,30 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Cabañas Desierto Atacama — Landing & Reservas
 
-## Getting Started
+Landing page de turismo con sistema de reservas para cabañas en el desierto de Atacama.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white)
+![Tailwind](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=flat&logo=tailwind-css&logoColor=white)
+![Supabase](https://img.shields.io/badge/Supabase-3ECF8E?style=flat&logo=supabase&logoColor=white)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Descripción
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Landing page responsive con diseño visual inspirado en el desierto, sistema de reservas completo con validaciones, base de datos en Supabase y confirmación vía WhatsApp y email.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Stack
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Next.js 16 + React 19 + TypeScript
+- Tailwind CSS v4
+- Framer Motion (animaciones)
+- Supabase (PostgreSQL)
+- Nodemailer (emails transaccionales)
+- WhatsApp API
+- Desplegado en Vercel
 
-## Learn More
+## Funcionalidades
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- 🏜️ Diseño visual temático con animaciones fluidas
+- 📅 Sistema de reservas con selección de cabaña y fechas
+- 💾 Persistencia en PostgreSQL vía Supabase
+- 📧 Emails de confirmación automáticos con Nodemailer
+- 💬 Redirección a WhatsApp con mensaje personalizado
